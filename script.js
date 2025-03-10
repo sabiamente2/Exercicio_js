@@ -1,50 +1,32 @@
 const form = document.getElementById("form");
-const numberA = document.getElementById("input-a");
-const numberB = document.getElementById("input-b");
+const numberA = document.getElementById("inputA");
+const numberB = document.getElementById("inputB");
 let mensage = document.querySelector("#mensage");
 
-function visible (a){
-    return a.classList.toggle("mensageVisible")
+let mensageValid = "Verdadeiro: B é maior que A."
+let mensageFalse = "Falso: B NÃO é maior que A"
+
+function visible (param){
+    return param.classList.toggle("mensageVisible")
+}
+function writeValid(param) {
+    mensage.textContent = param;
+    mensage.style.color = 'green';
+}
+function writeFalse(param) {
+    mensage.textContent = param; 
+    mensage.style.color = 'red';
 }
 
-
-function aMaiorQueB(numeroA, NumeroB, mensagemValidAqui  , mensageErrorAqui) 
-{
-    let mensagem = ["", ""]
-    mensagem[0] = mensagemValidAqui;
-    mensagem[1] = mensageErrorAqui;
-
-    if (numeroA.value > NumeroB.value)
-    {   
-        mensage.textContent = mensagem[0];
-        mensage.style.color = 'green';
-
-        if (visible(mensage) === false) 
-        {
-            visible(mensage)
-        }
-    }
-
-    else 
-    {
-        mensage.textContent = mensagem[1];
-        mensage.style.color = 'red';
-
-        if (visible(mensage) === false) 
-        {
-            visible(mensage)
-        }
-        
-    }
-    
-}
 
 form.addEventListener("submit", (event) => {
     event.preventDefault(); 
-    aMaiorQueB (numberB, numberA, "Verdaderiro: B é maior que A", "Falso: B é menor que A")
+
+    numberB.value > numberA.value ? writeValid(mensageValid) : writeFalse(mensageFalse);
+    if (!visible(mensage)) visible(mensage);
 })
-form.addEventListener("reset", (event) => {
-    if (visible(mensage) === true) {
-        visible(mensage);
-    }
+
+form.addEventListener("reset", ()=> {
+
+    if (visible(mensage)) visible(mensage);
 })
