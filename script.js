@@ -1,12 +1,12 @@
 const form = document.getElementById("form");
 const numberA = document.getElementById("inputA");
 const numberB = document.getElementById("inputB");
-let mensage = document.querySelector("#mensage");
+const mensage = document.querySelector("#mensage");
 
 let mensageValid = "Verdadeiro: B é maior que A."
 let mensageFalse = "Falso: B NÃO é maior que A"
 
-function visible (param){
+function visible(param){
     return param.classList.toggle("mensageVisible")
 }
 function writeValid(param) {
