@@ -1,7 +1,7 @@
 const form = document.getElementById("form");
 const numberA = document.getElementById("inputA");
 const numberB = document.getElementById("inputB");
-const mensage = document.querySelector("#mensage");
+const mensageArea = document.querySelector("#mensage");
 
 let mensageValid = "Verdadeiro: B é maior que A."
 let mensageFalse = "Falso: B NÃO é maior que A"
@@ -9,24 +9,20 @@ let mensageFalse = "Falso: B NÃO é maior que A"
 function visible(param){
     return param.classList.toggle("mensageVisible")
 }
-function writeValid(param) {
-    mensage.textContent = param;
-    mensage.style.color = 'green';
-}
-function writeFalse(param) {
-    mensage.textContent = param; 
-    mensage.style.color = 'red';
+function write(param) {
+    mensageArea.textContent = param;
+    param == mensageValid ? mensageArea.style.color = 'green' : mensageArea.style.color = 'red';
 }
 
 
 form.addEventListener("submit", (event) => {
     event.preventDefault(); 
 
-    numberB.value > numberA.value ? writeValid(mensageValid) : writeFalse(mensageFalse);
-    if (!visible(mensage)) visible(mensage);
+    numberB.value > numberA.value ? write(mensageValid) : write(mensageFalse);
+    if (!visible(mensageArea)) visible(mensageArea);
 })
 
 form.addEventListener("reset", ()=> {
 
-    if (visible(mensage)) visible(mensage);
+    if (visible(mensageArea)) visible(mensageArea);
 })
